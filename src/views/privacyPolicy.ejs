@@ -1,0 +1,30 @@
+<%
+var title = 'Patchnotes';
+var metaDescription = 'Updates to the bot. All changes to levels, xp and statistics for servers, channels and users.';
+var keywords = 'patchnotes, patch, bot, changes, log';
+var collapseId = 0;
+var accordionId = 0;
+%>
+
+<% include partials/header %>
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="row">
+    <% for (policy of privacyPolicy) { %>
+      <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel" style="height: auto;">
+          <div class="x_title">
+            <h2> <%= policy.title %></h2>
+            <div class="clearfix"></div>
+          </div>
+          <span><%= policy.content %></span><br />
+        </div>
+      </div>
+    <% } %>
+  </div>
+</div>
+<!-- /page content -->
+
+
+<% include partials/footer %>

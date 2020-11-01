@@ -1,0 +1,117 @@
+<%
+var title = 'Buy Tokens';
+var metaDescription = 'Additional paid premium features and cosmetics for customizing appearance and leveling even more.';
+var keywords = 'buy,tokens,premium,support,pricing,features,info';
+%>
+
+<% include partials/header %>
+<style>
+
+input[id=userId]::-webkit-inner-spin-button,
+input[id=userId]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+</style>
+<!-- page content -->
+<div class="right_col" role="main">
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Premium</h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <h3>All features are free! Activating Premium for your server does not unlock new features, but give you quality of life upgrades.</h3>
+          <p>Give yourself small boosts or spend your tokens to activate ActivityRank Premium on your favorite server. All features of the bot are free, but getting Premium gives small enhancements. All members can buy and fuel tokens into the bot to activate Premium for everyone on a specific server.</p>
+          <p>Simply buy or earn some tokens and use the <i>ar!token redeem premiumServer { amount }</i> command to fuel the current server's bot with your defined amount of tokens. As long as enough tokens are fueled in the server (one day's worth), it will be in Premium mode. Servers during the first month after inviting the bot will have Premium activated as a trial time.</p>
+          <p>Everyday, depending on the amount of users the server has, tokens burn. The amount of tokens burning per day is always the 1.5th root of the amount of users the server has. Use the <i>ar!info</i> command to see exactly how much it is for your server at the moment.</p>
+          <h5>Premium server token burn examples</h5>
+          <ul>
+            <li>100 Users burn 22 Tokens (~0.02 €) per day.</li>
+            <li>1000 Users burn 100 Tokens (~0.1 €) per day.</li>
+            <li>10000 Users burn 465 Tokens (~0.47 €) per day.</li>
+            <li>100000 Users burn 2155 Tokens (~2.15 €) per day.</li>
+          </ul>
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <h5>Premium server benefits</h5>
+              <ul>
+                <li>Shorter stats command cooldown.</li>
+                <li>Removal of messages asking to get premium.</li>
+              </ul>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <h5>Premium personal benefits</h5>
+              <ul>
+                <li>Premium support and VIP role on the official AR server (if >5K tokens bought).</li>
+                <li>Upvotepower 2x (costs 10 tokens per 3 days)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-sm-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Buy Tokens</h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12" style="height:200%">
+              <br />
+              <h3 class="text-center">1€ / 1000 Tokens</h3>
+              <h5 class="text-center">Please enter the amount of tokens and your user ID below.</h5>
+              <br />
+              <form>
+                <div class="row">
+                  <div class="col-md-5 col-sm-5 col-xs-5 form-group">
+                    <h5 class="text-center">€</h5>
+                    <input class="form-control text-center" step="1" type="number" min="1" max="10000" id="euros" oninput="document.getElementById('tokens').value = this.value * 1000;" placeholder="f.e. 5" style ="margin:auto">
+                  </div>
+                  <div class="col-md-2 col-sm-2 col-xs-2 form-group text-center">
+                    <i style="margin-top:1.5em;font-size:2em;" class="fa fa-arrows-h text-secondary" ></i>
+                  </div>
+                  <div class="col-md-5 col-sm-5 col-xs-5 form-group">
+                    <h5 class="text-center">Tokens</h5>
+                    <input class="form-control text-center" step="1000"  type="number" min="1000" max="10000000" id="tokens" oninput="document.getElementById('euros').value = this.value / 1000;" placeholder="f.e. 5000" style ="margin:auto">
+                  </div>
+
+                  <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <h5 class="text-center">Userid</h5>
+                    <input class="form-control text-center" id="userId" type="number" placeholder="f.e. 370650814223482880" style ="margin:auto">
+                  </div>
+                </div>
+              </form>
+              <br />
+              <h2 class="text-center">Thank you for your support!</h2>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+
+              <% include partials/youtubeButton %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br /><br /><br /><br />
+
+  <div class="row">
+
+  </div>
+
+</div>
+<!-- /page content -->
+
+
+
+<% include partials/footer %>

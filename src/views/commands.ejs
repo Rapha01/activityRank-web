@@ -1,0 +1,62 @@
+<%
+var title = 'Commands';
+var metaDescription = 'All available commands and functionalities for activityrank bot. Query the levels, xp and statistics for servers, channels and users.';
+var keywords = 'activityrank, commands, bot, statistics, user, channel, stats, xp, level, experience, points';
+var collapseId = 0;
+var accordionId = 0;
+%>
+
+<% include partials/header %>
+
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="row">
+    &nbsp;
+    <h4 class="text-center"><i>By using this bot you accept the <a href="/termsandconditions">Terms and Conditions</a>.</i></h4>
+    <br />
+    <% for (tag in commands) {  %>
+      <div class="col-xs-12">
+        <div class="x_panel" style="height: auto;">
+          <a class="collapse-link" style="cursor:pointer;">
+            <div class="x_title" >
+              <h2 style="width:85%"><i class="fa fa-align-left">&nbsp;</i> <strong><%= commands[tag].title %></strong>&nbsp;&nbsp; <%= commands[tag].desc %></h2>
+              <ul class="nav navbar-right panel_toolbox" style="min-width:20px;">
+                <li>
+                  <i class="fa fa-chevron-down"></i>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+          </a>
+          <div class="x_content" style="display: none;">
+            <div class="accordion" id="accordion<%= accordionId %>" role="tablist" aria-multiselectable="true">
+              <p><%= commands[tag].subdesc %></p>
+              <% for (subcommand of commands[tag].subcommands) { %>
+                <div class="panel">
+                  <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion<%= accordionId %>" href="#collapse<%= collapseId %>" aria-expanded="false" aria-controls="collapseTwo">
+                    <h4 class="panel-title"><%= subcommand.title %></h4>
+                  </a>
+                  <div id="collapse<%= collapseId %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" style="">
+                    <div class="panel-body">
+                      <p><strong><%= subcommand.desc.replace(/<prefix>/g,'ar!') %></strong></p>
+                      <p><%= subcommand.command.replace(/<prefix>/g,'ar!') %></p>
+                      <i>Ex.: <%= subcommand.example.replace(/<prefix>/g,'ar!') %></i>
+                    </div>
+                  </div>
+                </div>
+                <% collapseId++;
+              } %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% accordionId++;
+    } %>
+  </div>
+</div>
+<!-- /page content -->
+
+
+
+<% include partials/footer %>

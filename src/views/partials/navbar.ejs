@@ -1,0 +1,105 @@
+<div class="col-md-3 left_col">
+  <div class="left_col scroll-view">
+    <div class="navbar nav_title" >
+      <a href="/index" class="site_title" style="font-size:1.2em;"><span>&nbsp;ActivityRank Discord Bot</span></a>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <!-- menu profile quick info -->
+    <div class="profile clearfix">
+      <div class="profile_pic">
+        <img src="/img/favicon.png" alt="..." class="img-circle profile_img">
+      </div>
+      <div class="">
+        <br />
+        <h4>
+
+          <%
+          let status = '';
+          /*if (shardStats[0].status == 'online')
+            status = '<span style="color: #1ABB9C;">Online</span>';
+           else
+            status = '<span>Offline</span>';*/
+          %>
+          <%- status %>
+          <br />
+          <!--span style="font-size:0.7em;">last restart <%= //Math.floor(shardStats[0].uptimesec/60/60) %>h ago</span-->
+        </h4>
+      </div>
+    </div>
+    <!-- /menu profile quick info -->
+    <br />
+    <!-- sidebar menu -->
+    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+      <div class="menu_section">
+        <h3></h3>
+        <ul class="nav side-menu">
+          <li><a href="/index"><i class="fa fa-home"></i> Start </a></li>
+          <li><a href="/commands"><i class="fa fa-book"></i> Commands </a></li>
+          <li><a href="/patchnotes"><i class="fa fa-history"></i> Patchnotes </a></li>
+          <li><a href="/support"><i class="fa fa-envelope"></i> Support </a></li>
+          <li><a href="/premium"><i class="fa fa-shopping-cart"></i> Premium </a></li>
+          <!--li><a href="/faq"><i class="fa fa-home"></i> Faq </a></li-->
+        </ul>
+      </div>
+      <div class="menu_section">
+        <h3></h3>
+        <ul class="nav side-menu">
+          <!--li><a href="/premium"><i class="fa fa-home"></i> Premium </a></li-->
+          <li><a href="/about"><i class="fa fa-info-circle"></i> About </a></li>
+          <li><a href="/termsandconditions"><i class="fa fa-legal"></i> Terms and Conditions </a></li>
+          <li><a href="/privacypolicy"><i class="fa fa-archive"></i> Privacy Policy </a></li>
+        </ul>
+      </div>
+      <div class="menu_section">
+        <h3></h3>
+        <ul class="nav side-menu">
+          <li><a ><i class="fa fa-laptop"></i> Dashboard <span class="label btn-warning pull-right">Coming Soon</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- /sidebar menu -->
+
+    <!-- /menu footer buttons -->
+    <!--div class="sidebar-footer hidden-small">
+      <a data-toggle="tooltip" data-placement="top" title="Settings">
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+      </a>
+      <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+      </a>
+      <a data-toggle="tooltip" data-placement="top" title="Lock">
+        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+      </a>
+      <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+      </a>
+    </div-->
+    <!-- /menu footer buttons -->
+  </div>
+</div>
+
+<!-- top navigation -->
+<div class="top_nav">
+  <div class="nav_menu">
+    <nav>
+      <div class="nav toggle">
+        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+      </div>
+      <div class="nav toggle" style="width:auto">
+        <%= title %>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right" style="width:auto;">
+        <li role="presentation" class="dropdown">
+          <a href="https://discordapp.com/oauth2/authorize?client_id=534589798267224065&permissions=2114448593&scope=bot" class="dropdown-toggle info-number" aria-expanded="false">
+
+            <button style="margin: 0 0;" target="_blank" type="button" class="btn btn-sm btn-round btn-success">Invite Bot</button>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+<!-- /top navigation -->

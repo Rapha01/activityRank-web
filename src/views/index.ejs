@@ -1,0 +1,158 @@
+<%
+var title = 'Start';
+var metaDescription = 'Activityrank. A discord activity statistics bot for servers, voicechannels, textchannels and users.';
+var keywords = 'discord, statistics, bot, user, channel, stats';
+
+function nFormatter(num, digits) {
+  var si = [
+    { value: 1, symbol: "" },
+    { value: 1E3, symbol: "k" },
+    { value: 1E6, symbol: "M" },
+    { value: 1E9, symbol: "G" },
+    { value: 1E12, symbol: "T" },
+    { value: 1E15, symbol: "P" },
+    { value: 1E18, symbol: "E" }
+  ];
+  var rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+  var i;
+  for (i = si.length - 1; i > 0; i--) {
+    if (num >= si[i].value) {
+      break;
+    }
+  }
+  return (num / si[i].value).toFixed(digits).replace(rx, "$1") + si[i].symbol;
+}
+
+%>
+
+<% include partials/header %>
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="text-center" style="margin-top:80px;">
+    <h3>Activityrank Discord Bot</h3>
+    <h5 class="text-secondary">A bot dedicated to Levels, XP, Rankings and Statistics.</h5>
+    <a href="https://discordapp.com/oauth2/authorize?client_id=534589798267224065&permissions=2114448593&scope=bot" target="_blank" type="button" class="btn btn-round btn-success">Invite Bot</a>
+    <a href="/commands" type="button" class="btn btn-round btn-success">Show Commands</a>
+  </div>
+
+  <!-- top tiles -->
+  <br />
+  <!--div class="row tile_count text-center">
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-book"></i> Commands</span>
+      <div class="count" style="color:#5BC0DE"><%= //nFormatter(botStats[0].commandsday,1) %></div>
+      <span class="count_bottom"><i class="green"></i> Triggered (last 24h)</span>
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-angle-double-up"></i> Roles</span>
+      <div class="count" style="color:#5BC0DE"><%= //nFormatter(botStats[0].rolesassignmentsday,1) %></div>
+      <span class="count_bottom"><i class="red"></i> Assigned (last 24h)</span>
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-user"></i> Members</span>
+      <div class="count" style="color:#5BC0DE"><%= //nFormatter(botStats[0].voicemembers24h,1) %></div>
+      <span class="count_bottom"><i class="green"></i> Talking (last 24h)</span>
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-microphone"></i> Voicehours </span>
+      <div class="count" style="color:#5BC0DE"><%= //nFormatter(Math.ceil(botStats[0].voiceminutesday/60),1) %></div>
+      <span class="count_bottom"><i class="green"></i> Tracked (last 24h)</span>
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-user"></i> Members</span>
+      <div class="count" style="color:#5BC0DE"><%= //nFormatter(botStats[0].textmembers24h,1) %></div>
+      <span class="count_bottom"><i class="green"></i> Writing (last 24h)</span>
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-comments-o"></i> Textmessages </span>
+      <div class="count" style="color:#5BC0DE"><%= //nFormatter(botStats[0].textmessagesday,1) %></div>
+      <span class="count_bottom"><i class="red"></i> Tracked (last 24h)</span>
+    </div>
+  </div-->
+  <!-- /top tiles -->
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Features</h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <ul class="list-unstyled timeline">
+            <% for (feature of features) { %>
+              <li>
+                <div class="block" style="margin-left:20%;">
+                  <div class="tags" style="width:17%;">
+                    <div href="" class="tag">
+                      <span><%= feature.tag %></span>
+                    </div>
+                  </div>
+                  <div class="block_content">
+                    <h2 class="title"><a><%= feature.title %></a></h2>
+                    <!--div class="byline"><span>13 hours ago</span> by <a>Jane Smith</a></div-->
+                    <p class="excerpt"><%= feature.desc %></p>
+                  </div>
+                </div>
+              </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Feedback</h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <ul class="list-unstyled msg_list">
+            <% for (feedback of feedbacks) { %>
+            <li>
+              <a style="width:100%;">
+                <span class="image"><img src="/img/feedback/<%= feedback.img %>" alt="img" style="width:50px;"></span>
+                <span><span><%= feedback.name %></span><span class="time"><%= feedback.time %></span></span>
+                <span class="message"><%= feedback.desc %> </span><div></div>
+              </a>
+            </li>
+            <% } %>
+          </ul>
+          <div class="text-center"><small >... any many more. <br /> Write your own feedbeck in our support server!</small></div>
+        </div>
+      </div>
+      <br /><br />
+      <div class="text-center">
+        <img src="https://discordbots.org/api/widget/534589798267224065.svg" />
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2> Screenshots </h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div class="row">
+            <%
+            const imgs = [{title:'Server info',url:'showcase_info.png'},{title:'User rankings',url:'showcase_rank.png'},{title:'Customization settings',url:'showcase_set.png'},{title:'Toplists',url:'showcase_top.png'}];
+            for (img of imgs) { %>
+              <div class="col-md-12">
+                <img style="width: 100%; display: block;" src="/img/index/<%= img.url %>" alt="image">
+                <h5 class="text-center" style="margin-top:1%;"><%= img.title %></h5>
+                <br />
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- /page content -->
+
+
+
+<% include partials/footer %>

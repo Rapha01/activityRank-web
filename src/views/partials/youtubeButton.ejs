@@ -1,0 +1,75 @@
+<!-- Include the PayPal JavaScript SDK -->
+<%
+if (node_env == 'production') { %>
+  <script src="https://www.paypal.com/sdk/js?client-id=Acn4G5u7A_cTQHNQag63ow2PIR6jMde_24LXh3kGSc70wXUctSmP1yxRtJZqu6AJZMCOIR-2YBNUymgV&currency=EUR"></script>
+<% } else { %>
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR"></script>
+<% }
+%>
+<!--  -->
+
+<div id="paypal-button-container"></div>
+
+<script>
+    // Render the PayPal button into #paypal-button-container
+    paypal.Buttons({
+        // Call your server to set up the transaction
+        createOrder: function(data, actions) {
+            return fetch('/api/paypal/order/create/', {
+                method: 'post',
+                body: JSON.stringify({euros: document.getElementById("euros").value,userId: document.getElementById("userId").value}),
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+            }).then(function(res) {
+              console.log(res);
+              return res.json();
+            }).then(function(orderData) {
+              if (orderData.error)
+                alert(orderData.error);
+              console.log(orderData);
+              return orderData.id;
+            });
+        },
+
+        // Call your server to finalize the transaction
+        onApprove: function(data, actions) {
+            return fetch('/api/paypal/order/capture/', {
+                method: 'post',
+                body: JSON.stringify({orderId: data.orderID,userId: document.getElementById("userId").value}),
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+            }).then(function(res) {
+                return res.json();
+            }).then(function(orderData) {
+                // Three cases to handle:
+                //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+                //   (2) Other non-recoverable errors -> Show a failure message
+                //   (3) Successful transaction -> Show a success / thank you message
+
+                // Your server defines the structure of 'orderData', which may differ
+                var errorDetail = Array.isArray(orderData.details) && orderData.details[0];
+
+                if (errorDetail && errorDetail.issue === 'INSTRUMENT_DECLINED') {
+                    // Recoverable state, see: "Handle Funding Failures"
+                    // https://developer.paypal.com/docs/checkout/integration-features/funding-failure/
+                    return actions.restart();
+                }
+
+                if (errorDetail) {
+                    var msg = 'Sorry, your transaction could not be processed.';
+                    if (errorDetail.description) msg += '\n\n' + errorDetail.description;
+                    if (orderData.debug_id) msg += ' (' + orderData.debug_id + ')';
+                    // Show a failure message
+                    return alert(msg);
+                }
+
+                // Show a success message to the buyer
+                alert('Transaction completed by ' + orderData.payer.name.given_name);
+            });
+        }
+
+
+    }).render('#paypal-button-container');
+</script>

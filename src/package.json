@@ -1,0 +1,25 @@
+{
+  "name": "activityRankWebsite",
+  "version": "4.0.0",
+  "description": "ActivityRank Website",
+  "main": "app.js",
+  "scripts": {
+    "production": "NODE_ENV=production node ./app",
+    "development": "NODE_ENV=development node ./app",
+    "developmentNodemon": "nodemon --legacy-watch"
+  },
+  "dependencies": {
+    "nodemon": "*",
+    "express": "*",
+    "node-cron": "*",
+    "promise-mysql": "*", 
+    "ejs": "*",
+    "node-fetch": "*",
+    "request": "*",
+    "gentelella": "*",
+    "require-from-string": "*",
+    "@paypal/checkout-server-sdk": "*"
+  },
+  "author": "Linck",
+  "license": "ISC"
+}

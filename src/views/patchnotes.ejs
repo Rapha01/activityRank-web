@@ -1,0 +1,70 @@
+<%
+var title = 'Patchnotes';
+var metaDescription = 'Updates to the bot. All changes to levels, xp and statistics for servers, channels and users.';
+var keywords = 'patchnotes, patch, bot, changes, log';
+var collapseId = 0;
+var accordionId = 0;
+%>
+
+<% include partials/header %>
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="row">
+    <% for (patchnote of patchnotes) { %>
+      <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel" style="height: auto;">
+          <a class="collapse-link" style="cursor:pointer;">
+            <div class="x_title">
+              <h2><i class="fa fa-align-left"></i> &nbsp;<strong><%= patchnote.version %></strong> <%= patchnote.date %> <%= patchnote.title %></h2>
+
+              <ul class="nav navbar-right panel_toolbox" style="min-width:20px;">
+                <li>
+                  <i class="fa fa-chevron-down"></i>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+          </a>
+          <span><%= patchnote.desc %></span><br />
+          <div class="x_content" style="display: none;">
+            <div class="accordion" id="accordion<%= accordionId %>" role="tablist" aria-multiselectable="true">
+              <% for (feature of patchnote.features) { %>
+                <div class="panel">
+                  <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion<%= accordionId %>" href="#collapse<%= collapseId %>" aria-expanded="false" aria-controls="collapseTwo">
+                    <h4 class="panel-title"><%= feature.title %></h4>
+                  </a>
+                  <div id="collapse<%= collapseId %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" style="">
+                    <div class="panel-body">
+                      <p><strong><%= feature.desc %></strong></p>
+                    </div>
+                  </div>
+                </div>
+                <% collapseId++;
+              } %>
+              <% for (fix of patchnote.fixes) { %>
+                <div class="panel">
+                  <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion<%= accordionId %>" href="#collapse<%= collapseId %>" aria-expanded="false" aria-controls="collapseTwo">
+                    <h4 class="panel-title"><%= fix.title %></h4>
+                  </a>
+                  <div id="collapse<%= collapseId %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" style="">
+                    <div class="panel-body">
+                      <p><strong><%= fix.desc %></strong></p>
+                    </div>
+                  </div>
+                </div>
+                <% collapseId++;
+              } %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% accordionId++;
+    } %>
+  </div>
+</div>
+<!-- /page content -->
+
+
+
+<% include partials/footer %>
