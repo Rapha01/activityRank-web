@@ -16,7 +16,7 @@ exports.premium = (req, res, next) => {
   res.render('premium',{shardStats: textModel.shardStats,node_env:process.env.NODE_ENV});
 }
 exports.faq = (req, res, next) => {
-  res.render('faq',{shardStats: textModel.shardStats});
+  res.render('faq',{shardStats: textModel.shardStats,faqs: textModel.faqs});
 }
 exports.support = (req, res, next) => {
   res.render('support',{shardStats: textModel.shardStats});
