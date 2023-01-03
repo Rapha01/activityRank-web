@@ -22,6 +22,7 @@ app.use(express.static(path.join(__dirname, '/public/')));
 // Set Routes
 app.use(routes);
 
+
 const server = app.listen(process.env.PORT, async () => {
   try {
     await scheduler.start();
